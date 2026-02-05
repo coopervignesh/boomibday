@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>bbday
+
+</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<video autoplay muted loop id="bgVideo">
+  <source src="videos/bg.mp4" type="video/mp4">
+</video>
+
+<div class="center-btn">
+  <a href="gallery.html">More</a>
+</div>
+<script src="js/security.js"></script>
+<audio id="bgMusic">
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0;
+
+// Play only after first user click
+document.body.addEventListener("click", function(){
+
+music.play().then(()=>{
+fadeIn();
+}).catch(err=>{
+console.log("Autoplay blocked");
+});
+
+},{once:true});
+
+function fadeIn(){
+let v = 0;
+let fade = setInterval(()=>{
+if(v < 0.4){
+v += 0.02;
+music.volume = v;
+}else{
+clearInterval(fade);
+}
+},120);
+}
+</script>
+
+
+</body>
+</html>

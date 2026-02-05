@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gallery</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="red-bg">
+
+<div class="fog"></div>
+
+
+
+<h1 class="title">CONFIDENT AH IRUNGA VETRI NITCHAYAM</h1>
+<p class="subtitle">NEVER FORGET TO LAUGH</p>
+
+<div class="gallery">
+
+<script>
+for(let i=1;i<=20;i++){
+  document.write(`
+    <a href="photo.html?img=${i}">
+      <img src="photos/p${i}.jpg">
+    </a>
+  `);
+}
+</script>
+
+</div>
+
+<a class="back-btn" href="index.html">Back to Home</a>
+<script src="js/security.js"></script>
+
+<audio id="bgMusic">
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+music.volume = 0;
+
+// Play only after first user click
+document.body.addEventListener("click", function(){
+
+music.play().then(()=>{
+fadeIn();
+}).catch(err=>{
+console.log("Autoplay blocked");
+});
+
+},{once:true});
+
+function fadeIn(){
+let v = 0;
+let fade = setInterval(()=>{
+if(v < 0.4){
+v += 0.02;
+music.volume = v;
+}else{
+clearInterval(fade);
+}
+},120);
+}
+</script>
+
+</body>
+</html>
