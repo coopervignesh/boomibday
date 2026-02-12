@@ -63,5 +63,15 @@ clearInterval(fade);
 }
 </script>
 
+<script>
+document.addEventListener("touchstart", enableMusic, { once:true });
+document.addEventListener("click", enableMusic, { once:true });
+
+function enableMusic(){
+  sessionStorage.setItem("allowMusic", "yes");
+}
+</script>
+
+
 </body>
 </html>

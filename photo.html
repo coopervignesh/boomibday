@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Photo</title>
-<link rel="stylesheet" href="css/style.css">
+  <title>Photo</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="red-bg">
-
 
 <a class="back-btn" href="gallery.html">Back to Gallery</a>
 
@@ -14,46 +13,39 @@
   <img id="detailPhoto">
 </div>
 
+<audio id="bgMusic" loop></audio>
+
 <script>
 const params = new URLSearchParams(window.location.search);
 const num = params.get("img");
 
-document.getElementById("detailPhoto").src =
-  "photos/details/d" + num + ".jpg";
-</script>
-<script src="js/security.js"></script>
-
-<audio id="bgMusic" autoplay loop>
-  <source src="music/song.mp3" type="audio/mpeg">
-</audio>
-
-<script>
+const photo = document.getElementById("detailPhoto");
 const music = document.getElementById("bgMusic");
 
-// start silent
+photo.src = "photos/details/d" + num + ".jpg";
+music.src = "music/song" + num + ".mp3";
 music.volume = 0;
 
-// fade in
-window.addEventListener("load", function(){
-let v = 0;
-let fade = setInterval(()=>{
-if(v < 0.4){
-v += 0.02;
-music.volume = v;
-}else{
-clearInterval(fade);
+// mobile-safe autoplay
+if(sessionStorage.getItem("allowMusic") === "yes"){
+  setTimeout(() => {
+    music.play().then(() => {
+      let v = 0;
+      const fade = setInterval(() => {
+        if(v < 0.4){
+          v += 0.02;
+          music.volume = v;
+        } else {
+          clearInterval(fade);
+        }
+      }, 120);
+    }).catch(()=>{});
+  }, 200);
 }
-},120);
-});
-</script>
-
-<script>
-window.addEventListener("beforeunload", function(){
-music.volume = 0;
-});
 </script>
 
 
+<script src="js/security.js"></script>
 
 </body>
 </html>
