@@ -16,13 +16,13 @@ font-family:Arial;
 height:100%;
 }
 
-#bgVideo{
-position:fixed;
-right:0;
-bottom:0;
-min-width:100%;
-min-height:100%;
-object-fit:cover;
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
 }
 
 .center-btn{
@@ -105,4 +105,5 @@ margin-top:40px;
 max-width:80%;
 border-radius:20px;
 }
+
 
